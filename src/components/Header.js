@@ -3,8 +3,8 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <div>
-          <p>HEADER</p>
+      <div className="header">
+          <p className="header__title">HEADER</p>
       </div>
     )
   }
