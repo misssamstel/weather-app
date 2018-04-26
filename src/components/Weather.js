@@ -4,52 +4,56 @@ import axios from 'axios';
 export default class Weather extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      locationCode: 0
+    }
     this.weatherAPI = {
       baseURL: 'http://dataservice.accuweather.com',
       apiKey: 'VLYBIQ48eBl4bYVrrwbsbu1h7GguIaAC',
       currentWeatherURL: 'currentconditions/v1',
-      geopositionSearchURL: 'locations/v1/cities/geoposition/search',
-      version: 'v1',
-      locationCode: 2351574
-    }
+      geopositionSearchURL: 'locations/v1/cities/geoposition/search'
+    };
     this.getCurrentWeather = this.getCurrentWeather.bind(this);
     this.getCurrentLocationCode = this.getCurrentLocationCode.bind(this);
   }
   
-  getCurrentWeather() {
-    axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.currentWeatherURL}/${this.weatherAPI.locationCode}`, {
+  getCurrentWeather = () => {
+    axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.currentWeatherURL}/${this.state.locationCode}`, {
       params: {
         apikey: this.weatherAPI.apiKey,
         details: false
       }
     })
-    .then(function (res) {
+    .then((res) => {
       let data = res.data[0];
       let temperature = data.Temperature.Metric.Value;
       let weatherDesc = data.WeatherText;
       console.log(weatherDesc);
       console.log(`It is ${temperature}°C`);
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log(err);
     })
   }
-  getCurrentLocationCode() {
+  getCurrentLocationCode = () => {
     axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.geopositionSearchURL}`, {
       params: {
         apikey: this.weatherAPI.apiKey,
-        q: '34.698966999999996,135.4942211',
+        q: `${this.props.latitude},${this.props.longitude}`,
         language: 'ja-jp'
       }
     })
-    .then(function (res) {
+    .then((res) => {
       let data = res.data;
       let locationCode = data.Key;
       let locationName = data.LocalizedName;
       console.log(locationCode);
       console.log(`${locationName}にいます`);
+      this.setState({
+        locationCode: locationCode
+      });
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log(err);
     })
   }
