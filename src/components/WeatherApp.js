@@ -8,6 +8,8 @@ export default class WeatherApp extends React.Component {
     super(props);
     this.state = {
       currentLocation: "WeatherApp",
+      latitude: 0,
+      longitude: 0,
       error: null
     }
     this.success = this.success.bind(this);
@@ -15,21 +17,24 @@ export default class WeatherApp extends React.Component {
     this.getCurrentLocation = this.getCurrentLocation.bind(this);
   }
 
-  success(position) {
+  success = position => {
     let latitude  = position.coords.latitude;
     let longitude = position.coords.longitude;
     this.setState({
-      currentLocation: `Latitude is ${latitude} & Longitude is ${longitude}`
+      currentLocation: `Latitude is ${latitude} & Longitude is ${longitude}`,
+      latitude: latitude,
+      longitude: longitude
     });
+    console.log(this.state.latitude)
   }
 
-  error() {
+  error = () => {
     this.setState({
       error: "Unable to retrieve your location"
     });
   }
 
-  getCurrentLocation() {
+  getCurrentLocation = () => {
      if (!navigator.geolocation){
       this.setState({
         error: "Geolocation is not supported by your browser"
@@ -41,13 +46,14 @@ export default class WeatherApp extends React.Component {
     });
     navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
-
+  componentDidMount() {
+    this.getCurrentLocation();
+  }
   render() {
     return (
       <div>
           <Header currentLocation={this.state.currentLocation}/>
-          <Weather />
-          <p><button onClick={this.getCurrentLocation}>Get current location</button></p>
+          <Weather latitude={this.state.latitude} longitude={this.state.longitude}/>
           <div>
             <p>{this.state.currentLocation}</p>
             {this.state.error && <p>{this.state.error}</p>}
