@@ -112,6 +112,10 @@ export default class Weather extends React.Component {
 
   componentDidMount() {
     this.getCurrentLocation();
+
+    setInterval(() => {
+      this.getCurrentLocation();
+    }, 5 * 60 * 1000);
   }
 
   componentDidUpdate(prevProp, prevState) {
@@ -121,6 +125,10 @@ export default class Weather extends React.Component {
     if (prevState.locationCode !== this.state.locationCode) {
       this.getCurrentWeather();
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
