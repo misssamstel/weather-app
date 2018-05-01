@@ -113,9 +113,9 @@ export default class Weather extends React.Component {
   componentDidMount() {
     this.getCurrentLocation();
 
-    setInterval(() => {
-      this.getCurrentLocation();
-    }, 5 * 60 * 1000);
+    // setInterval(() => {
+    //   this.getCurrentLocation();
+    // }, 5 * 60 * 1000);
   }
 
   componentDidUpdate(prevProp, prevState) {
