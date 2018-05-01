@@ -7,9 +7,6 @@ yarn install
 ```
 
 ## Develop
-### Serve with live-server
-```
-yarn run serve
 ```
 ### Watch with babel
 ```
