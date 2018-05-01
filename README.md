@@ -7,7 +7,6 @@ yarn install
 ```
 
 ## Develop
-```
 ### Watch with babel
 ```
 yarn run dev-server
@@ -19,3 +18,4 @@ yarn run build
 
 ## History
 * v0 - First Steps
+* v1 - State Management
