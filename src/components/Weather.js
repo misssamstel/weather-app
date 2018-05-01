@@ -11,8 +11,14 @@ export default class Weather extends React.Component {
       locationCode: 0,
       locationName: "",
       weatherDesc: "",
-      temperature: 0
-    }
+      temperature: 0,
+      date: new Date()
+    };
+    this.date = {
+      currentYear: this.state.date.getFullYear(),
+      currentMonth: this.state.date.getMonth(),
+      currentDay: this.state.date.getDate()
+    };
     this.weatherAPI = {
       baseURL: 'http://dataservice.accuweather.com',
       apiKey: 'VLYBIQ48eBl4bYVrrwbsbu1h7GguIaAC',
@@ -65,7 +71,7 @@ export default class Weather extends React.Component {
     axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.currentWeatherURL}/${this.state.locationCode}`, {
       params: {
         apikey: this.weatherAPI.apiKey,
-        details: false
+        language: 'ja-jp'
       }
     })
     .then((res) => {
@@ -122,6 +128,7 @@ export default class Weather extends React.Component {
       <div>
           <p>WEATHER INFO</p>
           {this.state.error && <p>{this.state.error}</p>}
+          <p>Today is {`${this.date.currentYear}-${this.date.currentMonth + 1}-${this.date.currentDay}`}</p>
           <p>You are in {this.state.locationName}</p>
           <p>It is {this.state.weatherDesc}</p>
           <p>It is {this.state.temperature}°C</p>
