@@ -1,0 +1,31 @@
+.weather-icon {
+  display: inline-block;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+
+  &.sunny-cloud {
+    background: orange;
+  }
+  &.sunny {
+    background: red;
+  }
+  &.cloudy {
+    background: beige;
+  }
+  &.rainy {
+    background: blue;
+  }
+  &.misty {
+    background: gray;
+  }
+  &.windy {
+    background: lightgray;
+  }
+  &.thunder {
+    background: yellow;
+  }
+  &.snowy {
+    background: white;
+  }
+}

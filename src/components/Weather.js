@@ -5,6 +5,7 @@ import {
   updateWeatherDescTemp,
   updateLatLong,
   updateLocation,
+  setCurrentDate,
   addError,
   clearError
 } from '../actions/actions';
@@ -15,13 +16,9 @@ class Weather extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      date: new Date()
-    };
-    this.date = {
-      currentYear: this.state.date.getFullYear(),
-      currentMonth: this.state.date.getMonth(),
-      currentDay: this.state.date.getDate()
+      latitude: 0,
+      longitude: 0,
+      locationCode: ""
     };
     this.weatherAPI = {
       baseURL: 'http://dataservice.accuweather.com',
@@ -36,6 +33,7 @@ class Weather extends React.Component {
     this.getCurrentLocation = this.getCurrentLocation.bind(this);
     this.getCurrentWeather = this.getCurrentWeather.bind(this);
     this.getCurrentLocationCode = this.getCurrentLocationCode.bind(this);
+    this.setCurrentDate = this.setCurrentDate.bind(this);
   }
   
   success = position => {
@@ -43,7 +41,6 @@ class Weather extends React.Component {
       let latitude  = position.coords.latitude;
       let longitude = position.coords.longitude;
       this.setState({
-        currentLocation: `Latitude is ${latitude} & Longitude is ${longitude}`,
         latitude: latitude,
         longitude: longitude
       });
@@ -53,9 +50,6 @@ class Weather extends React.Component {
   }
 
   error = () => {
-    this.setState({
-      error: "Unable to retrieve your location"
-    });
     store.dispatch(addError("Unable to retrieve your location"))
   }
 
@@ -68,12 +62,18 @@ class Weather extends React.Component {
         store.dispatch(addError("Geolocation is not supported by your browser"))
         return;
       }
-      this.setState({
-        currentLocation: "Loading..."
-      });
       navigator.geolocation.getCurrentPosition(this.success, this.error);
       resolve();
     });
+  }
+
+  setCurrentDate = epochtime => {
+    let date = {};
+    date.epoch = new Date(0);
+    date.epoch.setUTCSeconds(epochtime);
+    date.day = date.epoch.getDate();
+    date.month = date.epoch.getMonth() + 1;
+    store.dispatch(setCurrentDate({date: date}));
   }
 
   getCurrentWeather = () => {
@@ -87,16 +87,15 @@ class Weather extends React.Component {
       let data = res.data[0];
       let temperature = data.Temperature.Metric.Value;
       let weatherDesc = data.WeatherText;
-      this.setState({
-        weatherDesc: weatherDesc,
-        temperature: temperature
-      });
+      this.setCurrentDate(data.EpochTime);
       store.dispatch(updateWeatherDescTemp({weatherDesc: weatherDesc, temperature: temperature}));
     })
     .catch((err) => {
       console.log(err);
     })
   }
+
+  
 
   // TODO: implement 5 day weather forecast
   // getFiveDayWeather = () => {
@@ -152,8 +151,7 @@ class Weather extends React.Component {
       let locationCode = data.Key;
       let locationName = data.LocalizedName;
       this.setState({
-        locationCode: locationCode,
-        locationName: locationName
+        locationCode: locationCode
       });
       store.dispatch(updateLocation({locationCode:locationCode, locationName:locationName}));
     })
@@ -185,13 +183,21 @@ class Weather extends React.Component {
 
   render() {
     return (
-      <div>
-          <p>WEATHER INFO</p>
-          {this.props.state.errors && <p>{this.props.state.errors}</p>}
-          <p>Today is {`${this.date.currentYear}-${this.date.currentMonth + 1}-${this.date.currentDay}`}</p>
-          <p>You are in {this.props.state.locationName}</p>
-          <p>It is {this.props.state.weatherDesc}</p>
-          <p>It is {this.props.state.temperature}°C</p>
+      <div className='weather-container'>
+        <div className='weather-panel current'>
+            {/* {this.props.state.errors && <p>{this.props.state.errors}</p>} */}
+            <p className='weather-desc'>{this.props.state.weatherDesc}</p>
+            <p className='temperature'>{this.props.state.temperature}°C</p>
+        </div>
+        <div className='weather-panel future'>
+          <ul className='future-weather-list'>
+            <li><strong className='day'>明日</strong><span className='temperature'>17°C</span><i className='weather-icon sunny-cloud'></i></li>
+            <li><strong className='day'>明後日</strong><span className='temperature'>19°C</span><i className='weather-icon sunny-cloud'></i></li>
+            <li><strong className='day'>土曜日</strong><span className='temperature'>22°C</span><i className='weather-icon sunny'></i></li>
+            <li><strong className='day'>日曜日</strong><span className='temperature'>23°C</span><i className='weather-icon sunny'></i></li>
+            <li><strong className='day'>月曜日</strong><span className='temperature'>19°C</span><i className='weather-icon rainy'></i></li>
+          </ul>
+        </div>
       </div>
     )
   }
