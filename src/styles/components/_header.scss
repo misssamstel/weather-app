@@ -1,6 +1,11 @@
 .header {
-  background: $main-background;
+  text-align: center;
 }
-.header__title {
+.header__location {
+  font-size: 2rem;
+  margin: 0;
+  padding: 20px;
+}
+.header__location {
   font-size: 2rem;
 }

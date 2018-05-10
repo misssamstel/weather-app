@@ -10,7 +10,7 @@ export default class WeatherApp extends React.Component {
     return (
       <Provider store={store}>
         <div>
-          {/* <Header currentLocation={this.state.currentLocation}/> */}
+          <Header/>
           <Weather />
         </div>
       </Provider>
