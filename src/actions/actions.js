@@ -1,3 +1,7 @@
-import { UPDATE_WEATHER_INFO } from '../constants/action-types';
+import { UPDATE_WEATHERDESC_TEMP, UPDATE_LAT_LONG, UPDATE_LOCATION, ADD_ERROR, CLEAR_ERROR } from '../constants/action-types';
 
-export const updateWeatherInfo = weather => ({ type: UPDATE_WEATHER_INFO, payload: weather });
+export const updateWeatherDescTemp = (weatherDesc, temperature) => ({ type: UPDATE_WEATHERDESC_TEMP, payload: weatherDesc, temperature });
+export const updateLatLong = (latitude, longitude) => ({ type: UPDATE_LAT_LONG, payload: latitude, longitude });
+export const updateLocation = (locationCode, locationName) => ({ type: UPDATE_LOCATION, payload: locationCode, locationName });
+export const addError = error => ({ type: ADD_ERROR, payload: error });
+export const clearError = error => ({ type: CLEAR_ERROR, payload: error });
