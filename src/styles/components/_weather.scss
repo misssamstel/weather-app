@@ -3,12 +3,9 @@
 }
 .weather-panel {
   width: 50%;
-  border: 1px solid #000;
   text-align: center;
 
   &.current {
-    background: lightblue;
-
     .weather-desc {
       font-size: 5rem;
     }
@@ -16,9 +13,7 @@
       font-size: 3rem;
     }
   }
-  &.future {
-    background: lightgoldenrodyellow;
-  }
+  //&.future {}
 }
 .future-weather-list {
   margin: 0;
@@ -26,7 +21,6 @@
 
   li {
     padding: 10px;
-    border-bottom: 1px solid #000;
     list-style-type: none;
   }
   .day {

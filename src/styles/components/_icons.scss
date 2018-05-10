@@ -1,31 +1,30 @@
 .weather-icon {
   display: inline-block;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  width: 75px;
+  height: 45px;
 
   &.sunny-cloud {
-    background: orange;
+    background: url(https://developer.accuweather.com/sites/default/files/03-s.png);
   }
   &.sunny {
-    background: red;
+    background: url(https://developer.accuweather.com/sites/default/files/01-s.png);
   }
   &.cloudy {
-    background: beige;
+    background: url(https://developer.accuweather.com/sites/default/files/07-s.png);
   }
   &.rainy {
-    background: blue;
+    background: url(https://developer.accuweather.com/sites/default/files/18-s.png);
   }
   &.misty {
-    background: gray;
+    background: url(https://developer.accuweather.com/sites/default/files/11-s.png);
   }
   &.windy {
-    background: lightgray;
+    background: url(https://developer.accuweather.com/sites/default/files/32-s.png);
   }
   &.thunder {
-    background: yellow;
+    background: url(https://developer.accuweather.com/sites/default/files/15-s.png);
   }
   &.snowy {
-    background: white;
+    background: url(https://developer.accuweather.com/sites/default/files/22-s.png);
   }
 }
