@@ -1,11 +1,12 @@
 .header {
+  padding-top: 60px;
   text-align: center;
 }
 .header__location {
-  font-size: 2rem;
+  font-size: 6rem;
   margin: 0;
-  padding: 20px;
 }
-.header__location {
-  font-size: 2rem;
+.header__date {
+  font-size: 3.5rem;
+  margin: 20px 0 50px;
 }
