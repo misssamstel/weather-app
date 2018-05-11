@@ -1,0 +1,32 @@
+.weather-container {
+  display: flex;
+}
+.weather-panel {
+  width: 50%;
+  text-align: center;
+
+  &.current {
+    .weather-desc {
+      font-size: 5rem;
+    }
+    .temperature {
+      font-size: 3rem;
+    }
+  }
+  //&.future {}
+}
+.future-weather-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 10px;
+    list-style-type: none;
+  }
+  .day {
+    font-size: 3rem;
+  }
+  .temperature {
+    font-size: 3rem;
+  }
+}

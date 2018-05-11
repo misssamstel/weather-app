@@ -6,3 +6,12 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
 }
+#app {
+  height: calc(100vh - 20px);
+  background: #d4e4ef;
+  background: -moz-linear-gradient(bottom, #d4e4ef 0%, #86aecc 100%);
+  background: -webkit-linear-gradient(bottom, #d4e4ef 0%,#86aecc 100%);
+  background: linear-gradient(to top, #d4e4ef 0%,#86aecc 100%);
+  border-radius: 30px;
+  margin: 10px;
+}
