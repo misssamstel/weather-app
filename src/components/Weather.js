@@ -22,7 +22,7 @@ class Weather extends React.Component {
     };
     this.weatherAPI = {
       baseURL: 'http://dataservice.accuweather.com',
-      apiKey: 'VLYBIQ48eBl4bYVrrwbsbu1h7GguIaAC',
+      apiKey: process.env.WEATHER_API_KEY,
       currentWeatherURL: 'currentconditions/v1',
       geopositionSearchURL: 'locations/v1/cities/geoposition/search',
       autocompleteSearchURL: 'locations/v1/cities/autocomplete'

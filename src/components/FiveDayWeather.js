@@ -14,7 +14,7 @@ class FiveDayWeather extends React.Component {
     super(props);
     this.weatherAPI = {
       baseURL: 'http://dataservice.accuweather.com',
-      apiKey: 'VLYBIQ48eBl4bYVrrwbsbu1h7GguIaAC',
+      apiKey: process.env.WEATHER_API_KEY,
       fiveDayForecastURL: 'forecasts/v1/daily/5day',
     };
     this.getFiveDayWeather = this.getFiveDayWeather.bind(this);
