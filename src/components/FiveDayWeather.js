@@ -41,7 +41,7 @@ class FiveDayWeather extends React.Component {
     return (
       <div className='weather-panel future'>
         <ul className='future-weather-list'>
-        this.props.state.fiveDayWeather.forEach((weatherListing, index) = > {
+        this.props.state.fiveDayWeather.forEach((weatherListing, index) => {
           <li><strong className='day'>index</strong><span className='temperature'>weatherListing</span><i className='weather-icon sunny-cloud'></i></li>
         });
         </ul>
