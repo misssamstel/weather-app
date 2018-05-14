@@ -1,5 +1,5 @@
 # WeatherApp
-Practice weather application using React, Webpack and Babel
+Practice weather application using React, Redux, Webpack and Babel
 
 ## Install
 ```
@@ -19,6 +19,7 @@ yarn run build
 ## History
 * v0 - First Steps
 * v1 - State Management
+* v2 - Week Weather
 
 ## Weather API
 ### AccuWeather

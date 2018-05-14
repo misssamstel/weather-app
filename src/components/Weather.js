@@ -25,7 +25,6 @@ class Weather extends React.Component {
       apiKey: 'VLYBIQ48eBl4bYVrrwbsbu1h7GguIaAC',
       currentWeatherURL: 'currentconditions/v1',
       geopositionSearchURL: 'locations/v1/cities/geoposition/search',
-      fiveDayForecastURL: 'forecasts/v1/daily/5day',
       autocompleteSearchURL: 'locations/v1/cities/autocomplete'
     };
     this.success = this.success.bind(this);
@@ -95,31 +94,6 @@ class Weather extends React.Component {
     })
   }
 
-  
-
-  // TODO: implement 5 day weather forecast
-  // getFiveDayWeather = () => {
-  //   axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.fiveDayForecastURL}/${this.state.locationCode}`, {
-  //     params: {
-  //       apikey: this.weatherAPI.apiKey,
-  //       language: 'ja-jp',
-  //       metric: true
-  //     }
-  //   })
-  //   .then((res) => {
-  //     let data = res.data;
-  //     data.DailyForecasts.forEach(forecast => {
-  //       store.dispatch(getFiveDayWeather({
-  //         date: forecast.Date,
-  //         temperatureMin: forecast.Temperature.Minimum.Value,
-  //         temperatureMax: forecast.Temperature.Maximum.Value
-  //       }));
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
 
   // TODO: autocomplete search - only searchable with kanji for ja or english for en - use q for query string
   // getFiveDayWeather = () => {
@@ -183,21 +157,10 @@ class Weather extends React.Component {
 
   render() {
     return (
-      <div className='weather-container'>
-        <div className='weather-panel current'>
-            {/* {this.props.state.errors && <p>{this.props.state.errors}</p>} */}
-            <p className='weather-desc'>{this.props.state.weatherDesc}</p>
-            <p className='temperature'>{this.props.state.temperature}°C</p>
-        </div>
-        <div className='weather-panel future'>
-          <ul className='future-weather-list'>
-            <li><strong className='day'>明日</strong><span className='temperature'>17°C</span><i className='weather-icon sunny-cloud'></i></li>
-            <li><strong className='day'>明後日</strong><span className='temperature'>19°C</span><i className='weather-icon sunny-cloud'></i></li>
-            <li><strong className='day'>土曜日</strong><span className='temperature'>22°C</span><i className='weather-icon sunny'></i></li>
-            <li><strong className='day'>日曜日</strong><span className='temperature'>23°C</span><i className='weather-icon sunny'></i></li>
-            <li><strong className='day'>月曜日</strong><span className='temperature'>19°C</span><i className='weather-icon rainy'></i></li>
-          </ul>
-        </div>
+      <div className='weather-panel current'>
+          {/* {this.props.state.errors && <p>{this.props.state.errors}</p>} */}
+          <p className='weather-desc'>{this.props.state.weatherDesc}</p>
+          <p className='temperature'>{this.props.state.temperature}°C</p>
       </div>
     )
   }
