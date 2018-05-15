@@ -26,7 +26,7 @@ const weatherReducer = (state = initialState, action) => {
   case SET_CURRENT_DATE:
     return { ...state, date: action.payload.date };
   case GET_FIVE_DAY_WEATHER:
-    return { ...state, fiveDayWeather: [action.payload] };
+    return { ...state, fiveDayWeather: action.payload };
   case ADD_ERROR:
     return { ...state, errors: [...state.errors, action.payload] };
   case CLEAR_ERROR:

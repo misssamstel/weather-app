@@ -8,6 +8,7 @@ import {
 } from '../actions/actions';
 import { bindActionCreators } from 'redux';
 import store from '../store/weatherStore';
+import FiveDayWeatherList from './FiveDayWeatherList';
 
 class FiveDayWeather extends React.Component {
   constructor(props) {
@@ -20,31 +21,40 @@ class FiveDayWeather extends React.Component {
     this.getFiveDayWeather = this.getFiveDayWeather.bind(this);
   }
  
-  getFiveDayWeather = () => {
-    axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.fiveDayForecastURL}/2351574`, {
-      params: {
-        apikey: this.weatherAPI.apiKey,
-        language: 'ja-jp',
-        metric: true
-      }
-    })
-    .then((res) => {
-      let data = res.data;
-      store.dispatch(getFiveDayWeather(data.DailyForecasts));
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  getFiveDayWeather = locationCode => {
+    if (locationCode !== 0) {
+      axios.get(`${this.weatherAPI.baseURL}/${this.weatherAPI.fiveDayForecastURL}/${locationCode}`, {
+        params: {
+          apikey: this.weatherAPI.apiKey,
+          language: 'ja-jp',
+          metric: true
+        }
+      })
+      .then((res) => {
+        let data = res.data;
+        store.dispatch(getFiveDayWeather(data.DailyForecasts));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  }
+
+  componentDidMount() {
+    const { locationCode } = this.props.state;
+    this.getFiveDayWeather(locationCode);
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.state.locationCode !== this.props.state.locationCode) {
+      this.getFiveDayWeather(nextProps.state.locationCode);
+    }
   }
 
   render() {
     return (
       <div className='weather-panel future'>
-        <ul className='future-weather-list'>
-        this.props.state.fiveDayWeather.forEach((weatherListing, index) => {
-          <li><strong className='day'>index</strong><span className='temperature'>weatherListing</span><i className='weather-icon sunny-cloud'></i></li>
-        });
-        </ul>
+        <FiveDayWeatherList />
       </div>
     )
   }
