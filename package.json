@@ -18,6 +18,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
+    "css-loader": "^0.28.11",
+    "dotenv-webpack": "^1.5.5",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
     "react": "16.0.0",
