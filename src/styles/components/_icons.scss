@@ -3,28 +3,49 @@
   width: 75px;
   height: 45px;
 
-  &.sunny-cloud {
+  &.day-sunny-cloud {
     background: url(https://developer.accuweather.com/sites/default/files/03-s.png);
   }
-  &.sunny {
+  &.day-sunny {
     background: url(https://developer.accuweather.com/sites/default/files/01-s.png);
   }
-  &.cloudy {
+  &.day-cloudy {
     background: url(https://developer.accuweather.com/sites/default/files/07-s.png);
   }
-  &.rainy {
+  &.day-rainy {
     background: url(https://developer.accuweather.com/sites/default/files/18-s.png);
   }
-  &.misty {
+  &.day-misty {
     background: url(https://developer.accuweather.com/sites/default/files/11-s.png);
+  }
+  &.day-thunder {
+    background: url(https://developer.accuweather.com/sites/default/files/15-s.png);
+  }
+  &.day-snowy {
+    background: url(https://developer.accuweather.com/sites/default/files/22-s.png);
+  }
+  &.night-sunny-cloud {
+    background: url(https://developer.accuweather.com/sites/default/files/36-s.png);
+  }
+  &.night-sunny {
+    background: url(https://developer.accuweather.com/sites/default/files/33-s.png);
+  }
+  &.night-cloudy {
+    background: url(https://developer.accuweather.com/sites/default/files/38-s.png);
+  }
+  &.night-rainy {
+    background: url(https://developer.accuweather.com/sites/default/files/40-s.png);
+  }
+  &.night-misty {
+    background: url(https://developer.accuweather.com/sites/default/files/37-s.png);
+  }
+  &.night-thunder {
+    background: url(https://developer.accuweather.com/sites/default/files/42-s.png);
+  }
+  &.night-snowy {
+    background: url(https://developer.accuweather.com/sites/default/files/44-s.png);
   }
   &.windy {
     background: url(https://developer.accuweather.com/sites/default/files/32-s.png);
-  }
-  &.thunder {
-    background: url(https://developer.accuweather.com/sites/default/files/15-s.png);
-  }
-  &.snowy {
-    background: url(https://developer.accuweather.com/sites/default/files/22-s.png);
   }
 }

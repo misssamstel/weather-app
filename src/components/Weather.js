@@ -168,6 +168,4 @@ class Weather extends React.Component {
 
 const mapStateToProps = state => {return {state: state}};
 
-// console.log(store.getState())
-
 export default connect(mapStateToProps)(Weather);
